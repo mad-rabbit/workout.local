@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/nev.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top align-items-center" role="group" aria-label="Basic example">
+            <div>
+                <a href="/news">
+                    <button type="button" class="btn top btn-group-sm d-flex nazad">
+                        <span class="white-text name">Новости</span>
+                    </button>
+                </a>
+            </div>
+            <div>
+                <a href="/competitions">
+                    <button type="button" class="btn top btn-group-sm d-flex nazad">
+                        <span class="white-text name">Мероприятия</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+<?php require_once ('/block/news.php')?>
+
+<div class="do posle">
+    <?php if($list):?>
+        <?php foreach ($list as $key => $value): ?>
+            <form action="" class="mb-3 border-bottom">
+                <div class="container-fluid mb-3">
+                    <div class="d-flex align-items-center">
+                        <a href="<?php echo '/user/'.$value['id_user'];?>">
+                            <img src="<?php if (!is_null($value['u_image'])){echo $value['u_image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>"
+                                 alt="" class="inventar_img">
+                        </a>
+                        <div>
+                            <h2 class="ml-3"><?php echo $value['login'];?></h2>
+                            <h4 class="ml-3"><?php echo $value['date_time'];?></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <img src="<?php if (!is_null($value['image'])){echo $value['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>"
+                             alt="<?php echo $value['title'];?>" class="img-fluid">
+                    </div>
+                    <div class="container mt-3 mb-2 opisanie">
+                        <p><?php echo $value['title'];?></p>
+                        <p><?php echo $value['description'];?></p>
+                    </div>
+                </div>
+            </form>
+        <?php endforeach;?>
+    <?php endif;?>
+</div>
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+</body>
+
+</html>

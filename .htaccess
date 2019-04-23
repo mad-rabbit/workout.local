@@ -1,0 +1,12 @@
+﻿#AddDefaultCharset UTF-8
+
+# Включаем mod_rewrite
+RewriteEngine On
+
+# Exclude directories from rewrite rules
+RewriteRule ^(css|media|js|img|font|scss|block|model) - [L]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]

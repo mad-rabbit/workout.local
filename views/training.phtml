@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Workout Garnet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top align-items-center" role="group" aria-label="Basic example">
+            <div>
+                <a href="/training">
+                    <button type="button" class="btn top btn-group-sm d-flex nazad">
+                        <span class="white-text name">Тренировки</span>
+                    </button>
+                </a>
+            </div>
+            <div>
+                <a href="/training/1">
+                    <button type="button" class="btn top btn-group-sm d-flex nazad">
+                        <span class="white-text name">Закладки</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+
+<?php require_once ('/block/training.php');?>
+
+<div class="container-fluid posle">
+    <figure class="view mdb-lightbox do">
+        <a href="<? echo $titles['/list/exercise/2']['link'];?>">
+            <img alt="placeholder" src="/img/statica2.jpg" class="img-fluid">
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/exercise/2']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox">
+        <a href="<? echo $titles['/list/exercise/3']['link'];?>">
+            <img alt="picture" src="/img/dynamic.jpg" class="img-fluid" />
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/exercise/3']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox">
+        <a href="<? echo $titles['/list/exercise/5']['link'];?>">
+            <img alt="picture" src="/img/parnye.jpg" class="img-fluid" />
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/exercise/5']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox do">
+        <a href="<? echo $titles['/list/exercise/1']['link'];?>">
+            <img alt="placeholder" src="/img/base.jpg" class="img-fluid">
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/exercise/1']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox">
+        <a href="<? echo $titles['/list/exercise/4']['link'];?>">
+            <img alt="picture" src="/img/kardio.jpg" class="img-fluid" />
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/exercise/4']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox do">
+        <a href="<?echo $titles['/list/workout']['link'];?>">
+            <img alt="picture" src="/img/treni.jpg" class="img-fluid" />
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/workout']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+
+    <figure class="view mdb-lightbox posle">
+        <a href="<? echo $titles['/list/combo']['link'];?>">
+            <img alt="picture" src="/img/combo.jpg" class="img-fluid" />
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold"><? echo $titles['/list/combo']['title'];?></p>
+            </div>
+        </a>
+    </figure>
+</div>
+
+
+</body>
+</html>

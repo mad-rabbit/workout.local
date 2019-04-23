@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top" role="group" aria-label="Basic example">
+            <div>
+                <button type="button" onclick="history.back();" class="btn top btn-group-sm d-flex nazad">
+                    <img src="/img/strelka.png" alt="" class="img-fluid pr-3" style="height: 25px;">
+                    <span class="white-text name">Настройки аккаунта</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+
+<section class="do">
+
+    <form action="/controller/uploadimage" method="post" enctype="multipart/form-data">
+        <div class="file-field">
+            <div class="mb-4" align="center">
+                <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle avatar-pic" alt="">
+            </div>
+
+            <div class="md-form d-flex flex-row">
+                <input type="file" name="fileToUpload" id="fileToUpload" class="col-4 mr-auto">
+                <button type="submit" name= "submit" class="btn peach-gradient col-5 mr-auto">Загрузить фото</button>
+            </div>
+        </div>
+    </form>
+    <? if(array_key_exists('message',$_SESSION)):?><div class="text-center"><p><?= $_SESSION['message']?><? unset($_SESSION['message'],$_SESSION);?></p></div><? endif;?>
+    <form action="/controller/saveSettings" method="post" class="md-form">
+        <div class="container">
+            <div class="md-form">
+                <input type="email" id="email" class="form-control" name="email">
+                <label for="form1">Email</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="login" class="form-control" name="login" pattern="^(\w+)$">
+                <label for="form1">Логин</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="name" class="form-control" name="name" pattern="^([A-Za-zА-Яа-я]+)$">
+                <label for="form1">Имя</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="l_name" class="form-control" name="l_name" pattern="^([A-Za-zА-Яа-я]+)$">
+                <label for="form1">Фамилия</label>
+            </div>
+
+
+            <div class="md-form">
+                <label for="date_birthday">Дата рождения</label>
+                <input type="date" id="date_birthday" name="date_birthday" class="form-control">
+            </div>
+
+
+            <div class="md-form">
+                <label for="date_workout">В workout с ...</label>
+                <input type="date" id="date_workout" name="date_workout" class="form-control">
+            </div>
+            <!--
+            <div class="md-form">
+                <input type="text" id="form1" name="country" class="form-control">
+                <datalist></datalist>
+                <label for="form1">Страна</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="form1" name="town" class="form-control">
+                <datalist></datalist>
+                <label for="form1">Город</label>
+            </div>
+            -->
+
+            <div class="md-form">
+                <label for="form1">О себе</label>
+                <textarea id="info" class="form-control" name="info" maxlength="500"></textarea>
+            </div>
+
+            <div class="md-form">
+                <input type="password" id="form1" name="password" class="form-control">
+                <label for="form107">Новый пароль</label>
+            </div>
+
+            <div class="md-form">
+                <input type="password" id="form1" name="confirm" class="form-control" required>
+                <label for="form108">Текущий пароль</label>
+            </div>
+            <div class="md-form d-flex flex-row posle">
+                <button class="btn peach-gradient col-5 mr-auto" type="submit">Сохранить</button>
+                <button class="btn peach-gradient col-5 mr-auto"><a href="/controller/logout">Выйти</a></button>
+            </div>
+
+        </div>
+    </form>
+</section>
+
+<!--<script type="application/javascript">
+    document.get ('datepicker').pickadate();
+</script>
+-->
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+
+<script>
+    var input = document.getElementById('email');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Email должен быть в формате "john_doe@email.ex"');
+    };
+
+    input = document.getElementById('name');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Используйте только буквы русского или английского алфавита');
+    };
+
+    input = document.getElementById('l_name');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Используйте только буквы русского или английского алфавита');
+    };
+
+    input = document.getElementById('login');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('В поле login могут содержаться только буквы A-Z,a-z, допустимы "_" и "."');
+    };
+
+</script>
+
+</body>
+</html>

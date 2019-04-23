@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Workout Garnet</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top" role="group" aria-label="Basic example">
+            <div>
+                <button type="button" onclick="history.back();" class="btn top btn-group-sm d-flex nazad">
+                    <img src="/img/strelka.png" alt="" class="img-fluid pr-3" style="height: 25px;">
+                    <span class="white-text name">назад</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+<?php require_once('/block/list.php'); ?>
+<div class="container-fluid do posle">
+
+    <? if (!$is_search):?>
+    <figure class="view mdb-lightbox">
+        <img alt="placeholder" src="/img/sample.jpg" class="img-fluid">
+        <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+            <form action="<? echo '/controller/search/'.$requestPage;?>" method="post">
+                <input type="text" name="search">
+                <button type="submit">Поиск</button>
+            </form>
+        </div>
+    </figure>
+    <? endif; ?>
+
+    <?/* if ($add): */?><!--
+    <figure class="view mdb-lightbox">
+        <a href="">
+            <img alt="placeholder" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(145).jpg" class="img-fluid">
+            <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                <p class="white-text font-weight-bold">+ Добавить</p>
+            </div>
+        </a>
+    </figure>
+    --><?/* endif;*/?>
+
+    <?php if($list): ?>
+        <?php foreach ($list as $key => $value) :?>
+
+            <figure class="view mdb-lightbox">
+                <a href="<?php echo '/'.$requestPage.'/'.$value['id']; ?>">
+                    <img alt="picture" style="width: 100%;" src="<?php if (!is_null($value['image'])){echo $value['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" class="img-fluid" />
+                    <div class="mask flex-center waves-effect waves-light rgba-teal-light">
+                        <p class="white-text font-weight-bold"><?php echo $value['title']?></p>
+                    </div>
+                </a>
+            </figure>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+</body>
+</html>

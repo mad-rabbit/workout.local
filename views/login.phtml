@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Workout Garnet</title>
+  <!-- Font Awesome -->
+ <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="/css/authorization.css" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="form-dark">
+    <div class="card card-image">
+        <div class="logo mt-4" align="center">
+            <img src="/img/logo.png" alt="" class="img-fluid">
+        </div>
+        <div class="text-white py-2 px-5 z-depth-4">
+            <form action="/controller/login" method="post">
+
+                <div class="text-center">
+                    <h3 class="white-text mb-3 mt-4 font-weight-bold text-uppercase"><strong>Авторизация</strong></h3>
+                </div>
+
+                <? if(array_key_exists('message',$_SESSION)):?><div class="text-center"><p><?= $_SESSION['message']?><? unset($_SESSION['message'],$_SESSION);?></p></div><? endif;?>
+
+                <div class="md-form mt-3">
+                    <input type="text" id="email" name="email" class="form-control" pattern="^[a-z_0-9.]{6,}(\@[a-z]+\.[a-z]{2,3})?$" required>
+                    <label for="form100">Логин или email</label>
+                </div>
+
+                <div class="md-form">
+                    <input type="password" id="form101" name="password" class="form-control" required>
+                    <label for="form101">Пароль</label>
+                </div>
+
+                <div>У Вас нет аккаунта? <a href="/registration">Зарегистрироваться</a></div>
+
+                <div class="row d-flex align-items-center">
+                    <div class="text-center col-12 mt-4 mb-4">
+                        <button type="submit" class="btn btn-block btn-rounded z-depth-1">Войти</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="/js/mdb.min.js"></script>
+
+<script>
+    var input = document.getElementById('email');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Login может содержать только буквы A-Z,a-z, "_", "." и цифры. ' +
+            'Email должен быть в формате "login@email.ex"');
+    };
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/new.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top" role="group" aria-label="Basic example">
+            <div>
+                <a href="/user">
+                <button type="button" class="btn top btn-group-sm d-flex nazad">
+                    <img src="/img/strelka.png" alt="" class="img-fluid pr-3" style="height: 25px;">
+                    <span class="white-text name">Новый пост</span>
+                </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+
+<div class="do posle">
+    <?php require_once ('/block/addpost.php')?>
+    <? if(array_key_exists('message',$_SESSION)):?><div class="text-center"><p><?= $_SESSION['message']?><? unset($_SESSION['message'],$_SESSION);?></p></div><? endif;?>
+    <form action="/controller/uploadimagepost" method="post" enctype="multipart/form-data">
+        <div class="file-field">
+            <div class="mb-4" align="center">
+                <img src="<?php if ($image){echo $image.'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" class="rounded-circle avatar-pic" alt="">
+            </div>
+            <? if(!$image):?>
+            <div class="md-form d-flex flex-row">
+                <input type="file" name="fileToUpload" id="fileToUpload" class="col-4 mr-auto">
+                <button type="submit" name= "submit" class="btn peach-gradient col-5 mr-auto">Загрузить фото</button>
+            </div>
+            <?endif;?>
+        </div>
+    </form>
+    <? if($image):?>
+    <form action="<?='/controller/addpost/'.$id?>" class="mb-3 border-bottom" method="post">
+            <div class="col-12">
+                <div class="container mt-3 mb-2 opisanie">
+                    <div class="md-form">
+                        <input type="text" id="title" class="form-control" name="title" required>
+                        <label for="form1">Заголовок</label>
+                    </div>
+                    <div class="md-form">
+                        <label for="form1">Описание</label>
+                        <textarea id="description" class="form-control" name="description" maxlength="500" required></textarea>
+                    </div>
+                </div>
+                <div class="container mt-3 mb-2">
+                    <button class="btn peach-gradient col-5 mr-auto" type="submit">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    <?else : ?><h1>Загрузите изображение, пожалуйста:)</h1><?endif;?>
+</div>
+
+
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+</body>
+
+</html>

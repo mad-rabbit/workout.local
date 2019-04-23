@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<?php require_once ('/block/muscles.php')?>
+
+<nav class="navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm top" role="group" aria-label="Basic example">
+            <div>
+                <button type="button" onclick="history.back();" class="btn top btn-group-sm d-flex nazad">
+                    <img src="/img/strelka.png" alt="" class="img-fluid pr-3" style="height: 25px;">
+                    <span class="white-text name">Мышцы</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="d-flex do align-items-center">
+        <a href="">
+            <img src="<?php if (!is_null($data['image'])){echo $data['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" alt="" class="inventar_img">
+        </a>
+        <h2 class="ml-3"><?php echo $data['title']; ?></h2>
+    </div>
+
+    <div class="reklama">
+        <a href="http://vplab.by">
+            <img src="/img/vplab.PNG" alt="" class="magaz img-fluid">
+        </a>
+    </div>
+
+    <div class="ml-3">
+        <h4 class="text-center mt-2 mb-2">Описание</h4>
+        <div class="opisanie">
+            <?php echo $data['description'];?>
+        </div>
+    </div>
+
+
+</div>
+<div class="ml-3 posle">
+    <?php if(array_key_exists('exercises', $data)):?>
+        <h4 class="text-center mt-2 mb-2">Элементы и упражнения для развития</h4>
+        <div class="d-flex poh_elementy">
+            <?php foreach ($data['exercises'] as $key => $value):?>
+                <div class="mr-2">
+                    <a href="<?php echo '/exercise/'.$value['id']; ?>">
+                        <img src="<?php if (!is_null($value['image'])){echo $value['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" alt="" class="img-fluid img_elementy">
+                    </a>
+                </div>
+            <?php endforeach;?>
+        </div>
+    <?php endif; ?>
+
+    <?php if(array_key_exists('muscles', $data)):?>
+        <h4 class="text-center mt-2 mb-2"><? echo 'Группа - '.$data['part_body']; ?></h4>
+        <div class="d-flex poh_elementy">
+            <?php foreach ($data['muscles'] as $key => $value):?>
+                <div class="mr-2">
+                    <a href="<?php echo '/muscles/'.$value['id']; ?>">
+                        <img src="<?php if (!is_null($value['image'])){echo $value['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" alt="" class="img-fluid img_elementy">
+                    </a>
+                </div>
+            <?php endforeach;?>
+        </div>
+    <?php endif; ?>
+</div>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+</body>
+
+</html>

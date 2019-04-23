@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/user.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar-fixed-bottom">
+    <div class="footer">
+        <div class="d-flex footer btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/news">news</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/training">train</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/main"><img src="/img/home.png" alt="" class="img-fluid" style="height: 20px;"></a></button>
+            <button type="button" class="btn footer btn-lg col-sm-3"><a href="/main">info</a></button>
+            <button type="button" class="btn footer btn-lg col-sm-2"><a href="/user">user</a></button>
+        </div>
+    </div>
+</nav>
+<?php require_once ('/block/user.php')?>
+
+<nav class=" navbar-fixed-top">
+    <div class="top">
+        <div class="d-flex btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" <?php if (!$isMainUser) :?> onclick="history.back();" <?php endif;?> class="mr-auto btn top btn-group-sm d-flex nazad ml-4">
+                <?php if (!$isMainUser) :?>
+                    <img src="/img/strelka.png" alt="" class="img-fluid pr-3" style="height: 25px;">
+                <?php endif;?>
+                <span class="white-text name"><?php echo $data['login']; ?></span>
+            </button>
+
+            <?php if ($isMainUser) :?>
+                <div class="pt-3 mr-4">
+                    <a href="/settings">
+                        <img src="/img/nastroiki.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+            <?php endif;?>
+        </div>
+    </div>
+</nav>
+
+<div class="do">
+    <div class="container">
+        <div class=" d-flex">
+            <div class="outter mt-2">
+                <img src="<?php if (!is_null($data['image'])){echo $data['image'].'?t='.urlencode(time());}else{echo '/img/FON.jpg';};?>" class="image-circle"/>
+            </div>
+            <div class="ml-3 mt-2 anketa">
+                <div><?php echo $data['full_name']; ?></div>
+                <div><?php if ($data['db']!=0):echo $data['db'].'лет';endif; ?></div>
+                <div><?php if(array_key_exists('town',$data)){echo $data['town'];} ?></div>
+                <div><?php if(array_key_exists('dw',$data)){echo 'В воркауте '.$data['dw'].' дней';};?> </div>
+            </div>
+        </div>
+    </div>
+
+    <?php if(array_key_exists('dostigeniya',$data)):?>
+        <button type="button" class="btn btn-primary btn-rounded peach-gradient btn-lg btn-block mt-3 mb-2">Достижения</button>
+        <div class="col-12 anketa">
+            <ul>
+                <?php foreach ($data['dostigeniya'] as $key => $value):?>
+                    <li><?php echo $value; ?></li>
+                <?endforeach;?>
+            </ul>
+        </div>
+    <?php endif;?>
+
+    <?php if ($data['info']!=''):?>
+        <button type="button" class="btn btn-primary btn-rounded peach-gradient btn-lg btn-block mt-3">Информация</button>
+        <div class="md-form col-12 anketa">
+            <?php echo $data['info'];?>
+        </div>
+    <?php endif;?>
+
+    <?php if(array_key_exists('social',$data)):?>
+        <div align="center">
+            <?php foreach ($data['social'] as $key => $value):?>
+                <?php switch ($key):
+                    case 'facebook' :?>
+                        <a class="fb-ic mr-3" role="button" href="<?php echo $value;?>">
+                            <i class="fab fa-lg fa-facebook-f"></i>
+                        </a>
+                        <?php break;?>
+                    <?php case 'twitter' :?>
+                        <a class="tw-ic mr-3" role="button" href="<?php echo $value;?>">
+                            <i class="fab fa-lg fa-twitter"></i>
+                        </a>
+                        <?php break;?>
+                    <?php case 'instagram' :?>
+                        <a class="ins-ic mr-3" role="button" href="<?php echo $value;?>">
+                            <i class="fab fa-lg fa-instagram" ></i>
+                        </a>
+                        <?php break;?>
+                    <?php case 'vkontakte' :?>
+                        <a class="vk-ic mr-3" role="button" href="<?php echo $value;?>">
+                            <i class="fab fa-lg fa-vk"></i>
+                        </a>
+                        <?php break;?>
+
+                    <?php endswitch;?>
+            <?php endforeach;?>
+        </div>
+    <?php endif;?>
+
+    <div class="">
+        <button type="button" class="btn btn-primary btn-rounded peach-gradient btn-lg btn-block">
+            <? if ($isMainUser): ?><a href="./addpost">+</a>
+            <? else:?>
+                <? if (!$data['followed']): ?>
+                    <a href="<? echo '/controller/follow/'.$data['id'];?>">Подписаться на новости</a>
+                <?else:?>
+                    <a href="<? echo '/controller/unfollow/'.$data['id'];?>">Отменить подписку</a>
+                <?endif;?>
+            <?endif; ?>
+        </button>
+    </div>
+
+</div>
+
+<?php if (array_key_exists('news', $data)):?>
+    <section class="posle">
+        <div class="">
+            <div class="no-margin">
+                <?php $i=0;
+                while ($i<count($data['news'])): ?>
+                    <div class="d-flex">
+                        <?php $count =0; while($count!=3):?>
+                            <?php if(array_key_exists($i,$data['news'])): ?>
+                                <figure class="gallery">
+                                    <a href="<?php echo '/new/'.$data['news'][$i]['id']?>" data-size="1600x1067">
+                                        <img alt="picture" src="<?php echo $data['news'][$i]['image'].'?t='.urlencode(time())?>"
+                                             class="">
+                                    </a>
+                                </figure>
+                                <?php $i++; $count++; else: $count=3; endif; ?>
+                        <?php endwhile;?>
+                    </div>
+                <?php endwhile;?>
+            </div>
+        </div>
+    </section>
+<?php endif;?>
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Workout Garnet</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/registracya.css" rel="stylesheet">
+</head>
+
+<body>
+
+<section class="form-dark">
+
+    <div class="card card-image">
+        <div class="logo" align="center">
+            <img src="/img/logo.png" alt="" class="img-fluid mt-4">
+        </div>
+        <div class="text-white py-2 px-5 z-depth-4">
+            <form action="/controller/registration" method="post">
+
+                <div class="text-center">
+                    <h3 class="white-text mb-3 mt-4 font-weight-bold text-uppercase"><strong>Регистрация</strong></h3>
+                </div>
+
+                <? if(array_key_exists('message',$_SESSION)):?><div class="text-center"><p><?= $_SESSION['message']?><? unset($_SESSION['message'],$_SESSION);?></p></div><? endif;?>
+
+                <div class="md-form mt-3">
+                    <input type="text" id="email" name="email" class="form-control" required pattern="^[a-z_0-9.]{6,}\@[a-z]+\.[a-z]{2,3}$">
+                    <label for="form100">Email</label>
+                </div>
+
+                <div class="md-form mt-3">
+                    <input type="text" id="login" name="login" class="form-control" pattern="^[a-zA-Z_0-9.]{6,}$" required
+                    title=''>
+                    <label for="form101">Логин</label>
+                </div>
+
+                <div class="md-form mt-3">
+                    <input type="text" id="name" name="name" class="form-control" pattern="^[A-Za-zА-Яа-я]{6,}$" required>
+                    <label for="form102">Имя</label>
+                </div>
+
+                <div class="md-form mt-3">
+                    <input type="text" id="l_name" name="l_name" class="form-control" pattern="^[A-Za-zА-Яа-я]{6,}$" required>
+                    <label for="form103">Фамилия</label>
+                </div>
+
+                <label for="date_birthday">Дата рождения</label>
+                <div class="md-form mt-3">
+                    <input type="date" id="date_birthday" name="date_birthday" class="form-control" required>
+                </div>
+
+                <label for="date_workout">В workout с ...</label>
+                <div class="md-form mt-3">
+                    <input type="date" id="date_workout" name="date_workout" class="form-control" required>
+                </div>
+
+                <div class="md-form">
+                    <label for="form1">О себе</label>
+                    <textarea id="info" class="form-control" name="info" maxlength="500"></textarea>
+                </div>
+
+                <!--<div class="md-form mt-3">
+                    <input type="text" id="form105" name="town" class="form-control" >
+
+                    <label for="form105">Город</label>
+                </div>-->
+
+                <div class="md-form">
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <label for="form107">Пароль</label>
+                </div>
+
+                <div class="md-form">
+                    <input type="password" id="confirm" name="confirm" class="form-control" required>
+                    <label for="form108">Подтверждение пароля</label>
+                </div>
+
+                <div class="row d-flex align-items-center">
+                    <div class="text-center col-12 mt-1 pb-4">
+                        <button type="submit" class="btn btn-block btn-rounded z-depth-1">Зарегистрироваться</button>
+                    </div>
+                </div>
+                <div class="text-center col-14 mt-1 pb-1">У Вас есть аккаунт? <a href="/login">Войти</a></div>
+
+            </form>
+        </div>
+    </div>
+
+</section>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+
+<script>
+    var input = document.getElementById('email');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Email должен быть в формате "john_doe@email.ex"');
+    };
+
+    input = document.getElementById('name');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Используйте только буквы русского или английского алфавита');
+    };
+
+    input = document.getElementById('l_name');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Используйте только буквы русского или английского алфавита');
+    };
+
+    input = document.getElementById('login');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('В поле login могут содержаться только буквы A-Z,a-z, допустимы "_" и "."');
+    };
+
+</script>
+
+</body>
+
+</html>
